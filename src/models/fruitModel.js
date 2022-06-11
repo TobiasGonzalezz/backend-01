@@ -4,11 +4,10 @@ const { Schema } = mongoose
 
 const fruitModel = new Schema(
     {
-        name: { type: String},
+        name: { type: String, require: true},
         color: { type: String},
         size: { type: String}
     }
 )
 
-module.export = mongoose.model('Fruit', fruitModel)
-
+module.exports = mongoose.model('Fruit', fruitModel)
