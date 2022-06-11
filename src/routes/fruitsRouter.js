@@ -1,26 +1,15 @@
 const express = require('express')
-const Fruit = require('../models/fruitModel')
-
-const router = () => {
+const fruitsControllers = require ('../controllers/fruitsControllers')
+const router = (Fruit) => {
     const fruitsRouter = express.Router()
-    fruitsRouter.route('/fruits').get(async(req, res) => {
 
-        const { query } = req
+    const { getAllFruits, getFruitsById, postFruit } = fruitsControllers(Fruit)
 
-        const response = await Fruit.find(query)
+    fruitsRouter.route('/fruits').get(getAllFruits).post(postFruit)
 
-        res.status(200).json(response)
-    })
-
-    fruitsRouter.route('/fruits/:id').get(async(req, res) => {
-        const { params } = req
-
-        const response = await Fruit.findById(params.id)
-
-        res.status(200).json(response)
-    })
+    fruitsRouter.route('/fruits/:id').get(getFruitsById)
 
     return fruitsRouter
 }
 
-module.exports = router()
+module.exports = router
