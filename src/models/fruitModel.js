@@ -4,9 +4,9 @@ const { Schema } = mongoose
 
 const fruitModel = new Schema(
     {
-        name: { type: String, require: true},
-        color: { type: String},
-        size: { type: String}
+        name: { type: String, unique: true },
+        color: { type: String, required: true },
+        size: { type: String }
     }
 )
 
