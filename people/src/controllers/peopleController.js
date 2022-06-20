@@ -23,7 +23,7 @@ const peopleController = (People) => {
 
                 res.status(401).send('Dato repetido, porfavor ingresar uno diferente')
             } else if (err.name === "ValidationError") {
-                res.status(403).send('tenes que poner un color si o si')
+                res.status(403).send('tenes que poner todos los datos')
             } else {
                 res.status(500).send(err.menssage)
             }

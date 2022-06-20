@@ -7,7 +7,7 @@ const router = (People) => {
 
     peopleRoutes.route('/people').get(getAllPeople).post(postPeople)
 
-    // PeoplesRouter.route('/Peoples/:id').get(getPeoplesById).put(putPeopleById)
+    peopleRoutes.route('/People/:id').get(getPeopleById).put(putPeopleById)
 
     peopleRoutes.route('/people/:id').get(getPeopleById).delete(deletePeopleById)
 
