@@ -2,70 +2,106 @@ const bcrypt = require('bcrypt')
 
 const peopleController = (People) => {
     const getAllPeople = async (req, res) => {
-        const { query } = req
+        try {
+            const { query } = req
 
-        const response = await People.find(query)
+            const response = await People.find(query)
 
-        res.status(200).json(response)
+            res.status(200).json(response)
+        } catch (err) {
+            res.status(500).send(err.name)
+        }
     }
 
     const postPeople = async (req, res) => {
         try {
             const { body } = req
-            const enncryptedPassword = await bcrypt.hash(body.password, 10)
-            const enncryptedData = {
+
+            const encryptedPassword = await bcrypt.hash(body.password, 10)
+
+            const encryptedData = {
                 ...body,
-                password: enncryptedPassword
+                password: encryptedPassword
             }
 
-            const people = await new People(enncryptedData)
+            const people = await new People(encryptedData)
+
             await people.save()
 
             res.status(201).json(people)
         } catch (err) {
-            console.log(err.name)
-            if (err.name === "MongoServerError") {
-                console.log("dato repetido")
-                res.status(401).send('Dato repetido, porfavor ingresar uno diferente')
-            } else if (err.name === "ValidationError") {
-                res.status(403).send('tenes que poner todos los datos')
-            } else {
-                res.status(500).send(err.menssage)
-            }
-
+            res.status(500).send(err.name)
         }
     }
 
+    const putPeopleById = async (req, res) => {
+        try {
+            const { body, params } = req
+
+            const checkData = await People.find({
+                _id: params.id
+            })
+
+            if (checkData === null) {
+                res.status(403).send('No data found with the provided ID.')
+            }
+
+            const encryptedPassword = await bcrypt.hash(body.password, 10)
+
+            await People.updateOne(
+                {
+                    _id: params.id
+                },
+                {
+                    $set: {
+                        firstName: body.firstName,
+                        lastName: body.lastName,
+                        username: body.username,
+                        password: encryptedPassword,
+                        email: body.email,
+                        address: body.address,
+                        phone: body.phone
+                    }
+                }
+            )
+
+            res.status(201).send('Data successful updated')
+        } catch (err) {
+            res.status(500).send(err.name)
+        }
+    }
 
     const getPeopleById = async (req, res) => {
-        const { params } = req
-        await People.findById(params.id)
+        try {
+            const { params } = req
 
-        res.status(200).json(response)
+            const response = await People.findById(params.id)
+
+            res.status(200).json(response)
+        } catch (err) {
+            res.status(500).send(err.name)
+        }
     }
-    const putPeopleById = async (req, res) => {
-        const { params, body } = req;
 
-        const enncryptedPassword = await bcrypt.hash(body.password, 10)
+    const deletePeopleById = async (req, res) => {
+        try {
+            const { params } = req
 
-        await People.updateOne({
-            _id: params.id,
-        },
-            {
-                $set: {
-                    firstName: body.firstName,
-                    lastName: body.lastName,
-                    username: body.username,
-                    password: enncryptedPassword,
-                    password2: body.password2,
-                    email: body.email,
-                    address: body.address,
-                    phone: body.phone
-                }
-            })
-        res.status(201).send('Data successful updated')
+            await People.findByIdAndDelete(params.id)
+
+            res.status(202).send('Data successful deleted')
+        } catch (err) {
+            res.status(500).send(err.name)
+        }
     }
-    return { getAllPeople, getPeopleById, postPeople, putPeopleById }
+
+    return {
+        getAllPeople,
+        getPeopleById,
+        postPeople,
+        putPeopleById,
+        deletePeopleById
+    }
 }
 
 module.exports = peopleController

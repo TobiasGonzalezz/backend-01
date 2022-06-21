@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
-const People = require('../models/peopleModel')
+
+console.log('Connecting to MongoDB...')
 
 mongoose
     .connect('mongodb://localhost/people')
     .then(() => console.log('DB connected'))
-    .catch((err) => console.log(err))
+    .catch((err) => console.error(err))
