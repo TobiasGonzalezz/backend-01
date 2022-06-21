@@ -30,7 +30,10 @@ const peopleController = (People) => {
 
             res.status(201).json(people)
         } catch (err) {
-            res.status(500).send(err.name)
+            res.status(500).send({
+                error: err.name,
+                cause: err.message
+            })
         }
     }
 

@@ -12,8 +12,7 @@ const peopleModel = new Schema({
         maxLength: 30,
         unique: true
     },
-    password: { type: String, required: true, minLength: 3, maxLength: 30 },
-    /* Erased password2 */
+    password: { type: String, required: true},
     email: { type: String, required: true, unique: true },
     address: { type: String, required: true },
     phone: { type: Number, required: true, unique: true }

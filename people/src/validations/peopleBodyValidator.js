@@ -7,7 +7,7 @@ const schema = Joi.object({
     password: Joi.string().required(),
     email: Joi.string().email().required(),
     address: Joi.string().required(),
-    phone: Joi.number().integer().required()
+    phone: Joi.string().min(9).max(13).required()
 })
 
 module.exports = schema
