@@ -1,9 +1,9 @@
-const jdmController = (Jdm) => {
+const jdmController = (Car) => {
     const getAllJdmCars = async (req, res, next) => {
         try {
             const { query } = req
 
-            const response = await Jdm.find(query)
+            const response = await Car.find(query)
 
             return res.status(201).json(response)
         } catch (err) {
@@ -15,11 +15,11 @@ const jdmController = (Jdm) => {
         try {
             const { body } = req
 
-            const jdm = await new Jdm(body)
+            const carJdm = await new Car(body)
 
-            await jdm.save()
+            await carJdm.save()
 
-            return res.status(202).json(jdm)
+            return res.status(202).json(carJdm)
         } catch (err) {
             next(err)
         }

@@ -1,10 +1,10 @@
 const express = require('express')
 const jdmController = require('../controllers/jdmControllers')
 
-const routes = (Jdm) => {
+const routes = (Car) => {
     const jdmRouter = express.Router()
 
-    const { getAllJdmCars, postJdmCars  } = jdmController(Jdm)
+    const { getAllJdmCars, postJdmCars  } = jdmController(Car)
 
     jdmRouter
     .route('/jdm')

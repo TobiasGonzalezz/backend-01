@@ -1,6 +1,6 @@
 const express = require('express')
-const Jdm = require('./models/jdmModels')
-const jdmRoutes = require('./routes/jdmRoutes')(Jdm)
+const Car = require('./models/jdmModels')
+const jdmRoutes = require('./routes/jdmRoutes')(Car)
 
 const app = express()
 

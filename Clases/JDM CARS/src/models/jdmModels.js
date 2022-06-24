@@ -8,4 +8,4 @@ const carsModel = new Schema({
     hp: { type: String, required: true, minLength: 2, maxLength: 30 },
 })
 
-module.exports = mongoose.model('Jdm', carsModel)
+module.exports = mongoose.model('Car', carsModel)
