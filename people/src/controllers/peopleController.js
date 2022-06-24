@@ -1,19 +1,20 @@
 const bcrypt = require('bcrypt')
+const httpStatus = require('../helpers/httpStatus')
 
 const peopleController = (People) => {
-    const getAllPeople = async (req, res) => {
+    const getAllPeople = async (req, res, next) => {
         try {
             const { query } = req
 
             const response = await People.find(query)
 
-            res.status(200).json(response)
+            return res.status(httpStatus.OK).json(response)
         } catch (err) {
-            res.status(500).send(err.name)
+            next(err)
         }
     }
 
-    const postPeople = async (req, res) => {
+    const postPeople = async (req, res, next) => {
         try {
             const { body } = req
 
@@ -28,16 +29,13 @@ const peopleController = (People) => {
 
             await people.save()
 
-            res.status(201).json(people)
+            return res.status(httpStatus.CREATED).json(people)
         } catch (err) {
-            res.status(500).send({
-                error: err.name,
-                cause: err.message
-            })
+            next(err)
         }
     }
 
-    const putPeopleById = async (req, res) => {
+    const putPeopleById = async (req, res, next) => {
         try {
             const { body, params } = req
 
@@ -46,7 +44,7 @@ const peopleController = (People) => {
             })
 
             if (checkData === null) {
-                res.status(403).send('No data found with the provided ID.')
+                return res.status(httpStatus.FORBIDDEN).send('No data found with the provided ID.')
             }
 
             const encryptedPassword = await bcrypt.hash(body.password, 10)
@@ -68,33 +66,33 @@ const peopleController = (People) => {
                 }
             )
 
-            res.status(201).send('Data successful updated')
+            return res.status(httpStatus.CREATED).send('Data successful updated')
         } catch (err) {
-            res.status(500).send(err.name)
+            next(err)
         }
     }
 
-    const getPeopleById = async (req, res) => {
+    const getPeopleById = async (req, res, next) => {
         try {
             const { params } = req
 
             const response = await People.findById(params.id)
 
-            res.status(200).json(response)
+            return res.status(httpStatus.OK).json(response)
         } catch (err) {
-            res.status(500).send(err.name)
+            next(err)
         }
     }
 
-    const deletePeopleById = async (req, res) => {
+    const deletePeopleById = async (req, res, next) => {
         try {
             const { params } = req
 
             await People.findByIdAndDelete(params.id)
 
-            res.status(202).send('Data successful deleted')
+            return res.status(httpStatus.OK).send('Data successful deleted')
         } catch (err) {
-            res.status(500).send(err.name)
+            next(err)
         }
     }
 
