@@ -4,7 +4,7 @@ const peopleRoutes = require('./routes/peopleRoutes')(People)
 const authRoutes = require('./routes/authRoutes')(People)
 const errorHandler = require('./middleware/errorHandler')
 const httpStatus = require('./helpers/httpStatus')
-require('dotoenv').config()
+require('dotenv').config()
 const { expressjwt } = require('express-jwt')
 
 const app = express()
