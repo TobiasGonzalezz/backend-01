@@ -7,6 +7,7 @@ const schema = Joi.object({
     weight: Joi.string().min(3).max(20).trim().required(),
     enginePower: Joi.string().min(3).max(20).trim().required(),
     traction: Joi.string().min(3).max(20).trim().required(),
+    imageUrl: Joi.string().required(),
 })
 
 module.exports = schema

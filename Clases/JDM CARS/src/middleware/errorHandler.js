@@ -14,7 +14,7 @@ const ERROR_HANDLERS = {
     ValidationError: (res, err) => {
         res
         .status(httpStatus.BAD_REQUEST)
-        .send({error: err.name, cause: err.message, message: 'Los datos que ingresastes son inexistentes o superan el maximo de caracteres, porfavor revisar tipeo' })
+        .send({error: err.name, cause: err.message, message: 'Los datos que ingresastes son inexistentes, superan el maximo de caracteres o faltantes, porfavor revisar tipeo' })
     },
     defaultError: (res, err) => {
         res

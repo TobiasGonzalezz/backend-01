@@ -1,8 +1,7 @@
 const express = require('express')
-const Car = require('./models/jdmModels')
+const Car = require('./models/carsModels')
 const jdmRoutes = require('./routes/jdmRoutes')(Car)
 const errorHandler = require('./middleware/errorHandler')
-
 
 const app = express()
 

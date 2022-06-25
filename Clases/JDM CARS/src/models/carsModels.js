@@ -9,6 +9,7 @@ const carsModel = new Schema({
     weight: { type: String, required: true, minLength: 3, maxLength: 20 },
     enginePower: { type: String, required: true },
     traction: { type: String, required: true, minLength: 3, maxLength: 20 },
+    imageUrl: {type: String, required: true}
 })
 
 module.exports = mongoose.model('Car', carsModel)
