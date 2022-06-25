@@ -1,7 +1,8 @@
 const Joi = require('joi')
 
 const schema = Joi.object({
-    model: Joi.string().min(3).max(20).trim().required(),
+    mark: Joi.string().min(3).trim().required(),
+    model: Joi.string().min(3).trim().required(),
     year: Joi.string().min(3).max(20).trim().required(),
     bodyWork: Joi.string().min(3).max(20).trim().required(),
     weight: Joi.string().min(3).max(20).trim().required(),

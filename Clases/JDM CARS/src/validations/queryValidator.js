@@ -2,6 +2,9 @@ const Joi = require('joi')
 
 const querySchema = Joi.alternatives().try(
     Joi.object({
+        mark: Joi.string().required(),
+    }),
+    Joi.object({
         model: Joi.string().required(),
     }),
     Joi.object({

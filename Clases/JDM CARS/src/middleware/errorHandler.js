@@ -1,6 +1,11 @@
 const httpStatus = require('../helpers/httpStatus')
 
 const ERROR_HANDLERS = {
+    CastError: (res, err) => {
+        res
+        .status(httpStatus.BAD_REQUEST)
+        .send({error: err.name, cause: err.message, message: 'La id que colocaste es erronea, porfavor ingresar una nueva' })
+    },
     MongoServerError: (res, err) => {
         res
         .status(httpStatus.BAD_REQUEST)
