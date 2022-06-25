@@ -1,3 +1,5 @@
+const httpStatus = require('../helpers/httpStatus')
+
 const jdmController = (Car) => {
     const getAllJdmCars = async (req, res, next) => {
         try {
@@ -5,7 +7,7 @@ const jdmController = (Car) => {
 
             const response = await Car.find(query)
 
-            return res.status(201).json(response)
+            return res.status(httpStatus.OK).json(response)
         } catch (err) {
             next(err)
         }
@@ -19,7 +21,7 @@ const jdmController = (Car) => {
 
             await carJdm.save()
 
-            return res.status(202).json(carJdm)
+            return res.status(httpStatus.CREATED).json(carJdm)
         } catch (err) {
             next(err)
         }
