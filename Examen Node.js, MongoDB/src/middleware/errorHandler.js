@@ -1,6 +1,11 @@
 const httpStatus = require('../helpers/httpStatus')
 
 const ERROR_HANDLERS = {
+    Error: (res, err) => {
+        res
+        .status(httpStatus.BAD_REQUEST)
+        .send({error: err.name, cause: err.message, message: 'ingresa los datos para registrarte' })
+    },
     CastError: (res, err) => {
         res
         .status(httpStatus.BAD_REQUEST)

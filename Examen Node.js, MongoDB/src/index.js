@@ -1,7 +1,9 @@
 const express = require('express')
 const People = require('./models/peopleModel')
+const Car = require('./models/carsModels')
 const peopleRoutes = require('./routes/peopleRoutes')(People)
 const authRoutes = require('./routes/authRoutes')(People)
+const jdmRoutes = require('./routes/jdmRoutes')(Car)
 const errorHandler = require('./middleware/errorHandler')
 const httpStatus = require('./helpers/httpStatus')
 require('dotenv').config()
@@ -33,9 +35,10 @@ app.use((err, _, res, next) => {
 
 app.use('/api', peopleRoutes)
 app.use('/', authRoutes)
+app.use('/api', jdmRoutes)
 
 app.use(errorHandler)
 
-app.listen(5000, () => {
-    console.log('Server is run :D')
+app.listen(process.env.PORT, () => {
+    console.log('Server is run')
 })

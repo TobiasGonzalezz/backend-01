@@ -1,8 +1,7 @@
 const mongoose = require('mongoose')
-
-console.log('Connecting to MongoDB...')
+require('dotenv').config()
 
 mongoose
-    .connect('mongodb://localhost/jdm')
+    .connect(process.env.DB_URI)
     .then(() => console.log('DB connected'))
     .catch((err) => console.error(err))

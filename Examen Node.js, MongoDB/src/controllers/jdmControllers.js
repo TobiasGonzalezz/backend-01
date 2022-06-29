@@ -34,7 +34,7 @@ const jdmController = (Car) => {
                 _id: params.id
             })
 
-            if (checkData === null) {
+            if (checkData.length === 0) {
                 return res.status(httpStatus.FORBIDDEN).send('No data found with the provided ID.')
             }
 
@@ -72,20 +72,6 @@ const jdmController = (Car) => {
         }
     }
 
-    const postJdmCarsById = async (req, res, next) => {
-        try {
-            const { params } = req
-
-            const carJdm = await new Car(params.id)
-
-            await carJdm.save()
-
-            return res.status(httpStatus.CREATED).json(carJdm)
-        } catch (err) {
-            next(err)
-        }
-    }
-
     const deleteJdmCarsById = async (req, res, next) => {
         try {
             const { params } = req
@@ -101,7 +87,6 @@ const jdmController = (Car) => {
         getAllJdmCars,
         postJdmCars,
         getJdmCarsById,
-        postJdmCarsById,
         putJdmCarsById,
         deleteJdmCarsById
     }
