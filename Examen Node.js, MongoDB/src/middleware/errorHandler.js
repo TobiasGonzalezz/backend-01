@@ -4,27 +4,27 @@ const ERROR_HANDLERS = {
     Error: (res, err) => {
         res
         .status(httpStatus.BAD_REQUEST)
-        .send({error: err.name, cause: err.message, message: 'ingresa los datos para registrarte' })
+        .send({error: err.name, cause: err.message, message: 'enter your data to register' })
     },
     CastError: (res, err) => {
         res
         .status(httpStatus.BAD_REQUEST)
-        .send({error: err.name, cause: err.message, message: 'La id que colocaste es erronea, porfavor ingresar una nueva' })
+        .send({error: err.name, cause: err.message, message: 'The ID you entered is incorrect, please enter a new one' })
     },
     MongoServerError: (res, err) => {
         res
         .status(httpStatus.BAD_REQUEST)
-        .send({error: err.name, cause: err.message, message: 'Ya existe informacion sobre esto,porfavor intenta con un nuevo dato' })
+        .send({error: err.name, cause: err.message, message: 'There is already information about it, try with a new data' })
     },
     SyntaxError:  (res, err) => {
         res
         .status(httpStatus.BAD_REQUEST)
-        .send({error: err.name, cause: err.message, message: 'Error de tipado, porfavor revisar los datos' })
+        .send({error: err.name, cause: err.message, message: 'typing error, please check the data' })
     },
     ValidationError: (res, err) => {
         res
         .status(httpStatus.BAD_REQUEST)
-        .send({error: err.name, cause: err.message, message: 'Los datos que ingresastes son inexistentes, superan el maximo de caracteres o faltantes, porfavor revisar tipeo' })
+        .send({error: err.name, cause: err.message, message: 'The data you entered does not exist, it exceeds the maximum number of characters, check your writing' })
     },
     defaultError: (res, err) => {
         res

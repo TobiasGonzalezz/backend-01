@@ -19,7 +19,7 @@ const authController = (People) => {
             const token = generateToken()
 
             return res.status(httpStatus.OK).json({
-                status: 'logeado',
+                status: 'logged in',
                 token
             })
         } catch (err) {

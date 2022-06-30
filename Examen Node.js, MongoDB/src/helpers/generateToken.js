@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const generateToken = () => {
     const token =
         jwt.sign({
-        data: 'aca van los datos'
+        data: 'Here are the data'
         }, 'SECRET', { expiresIn: "1d" })
     return token
 }

@@ -12,4 +12,5 @@ const router = (People) => {
 
     return authRouter
 }
+
 module.exports = router

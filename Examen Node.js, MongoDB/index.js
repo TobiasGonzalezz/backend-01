@@ -1,17 +1,20 @@
 const express = require('express')
-const People = require('./models/peopleModel')
-const Car = require('./models/carsModels')
-const peopleRoutes = require('./routes/peopleRoutes')(People)
-const authRoutes = require('./routes/authRoutes')(People)
-const jdmRoutes = require('./routes/jdmRoutes')(Car)
-const errorHandler = require('./middleware/errorHandler')
-const httpStatus = require('./helpers/httpStatus')
+const cors = require('cors')
+const People = require('./src/models/peopleModel')
+const Car = require('./src/models/carsModels')
+const peopleRoutes = require('./src/routes/peopleRoutes')(People)
+const authRoutes = require('./src/routes/authRoutes')(People)
+const jdmRoutes = require('./src/routes/jdmRoutes')(Car)
+const errorHandler = require('./src/middleware/errorHandler')
+const httpStatus = require('./src/helpers/httpStatus')
 require('dotenv').config()
 const { expressjwt } = require('express-jwt')
 
 const app = express()
 
-require('./database/db')
+require('./src/database/db')
+
+app.use(cors())
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
@@ -33,9 +36,8 @@ app.use((err, _, res, next) => {
     }
 })
 
-app.use('/api', peopleRoutes)
+app.use('/api', peopleRoutes, jdmRoutes)
 app.use('/', authRoutes)
-app.use('/api', jdmRoutes)
 
 app.use(errorHandler)
 
