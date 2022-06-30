@@ -10,6 +10,7 @@ const httpStatus = require('./src/helpers/httpStatus')
 require('dotenv').config()
 const { expressjwt } = require('express-jwt')
 
+
 const app = express()
 
 require('./src/database/db')
