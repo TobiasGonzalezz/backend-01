@@ -4,7 +4,7 @@ const generateToken = () => {
     const token =
         jwt.sign({
         data: 'Here are the data'
-        }, 'SECRET', { expiresIn: "1d" })
+        }, process.env.SECRET, { expiresIn: "1d" })
     return token
 }
 

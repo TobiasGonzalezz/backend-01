@@ -24,7 +24,7 @@ const ERROR_HANDLERS = {
     ValidationError: (res, err) => {
         res
         .status(httpStatus.BAD_REQUEST)
-        .send({error: err.name, cause: err.message, message: 'The data you entered does not exist, it exceeds the maximum number of characters, check your writing' })
+        .send({error: err.name, cause: err.message, message: 'The data you entered does not exist, data is missing or exceeds the maximum number of characters, check your writing' })
     },
     defaultError: (res, err) => {
         res

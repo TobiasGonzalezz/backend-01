@@ -76,6 +76,14 @@ const jdmController = (Car) => {
         try {
             const { params } = req
 
+            const checkData = await People.find({
+                _id: params.id
+            })
+
+            if (checkData.lenght === 0) {
+                return res.status(httpStatus.FORBIDDEN).send('No data found with the provided ID.')
+            }
+
             await Car.findByIdAndDelete(params.id)
 
             return res.status(httpStatus.OK).send('Data successful deleted')
