@@ -14,7 +14,7 @@ const ERROR_HANDLERS = {
     MongoServerError: (res, err) => {
         res
         .status(httpStatus.BAD_REQUEST)
-        .send({error: err.name, cause: err.message, message: 'Ya existe informacion sobre este modelo de auto, intenta con uno nuevo' })
+        .send({error: err.name, cause: err.message, message: 'Ya existe informacion sobre esto,porfavor intenta con un nuevo dato' })
     },
     SyntaxError:  (res, err) => {
         res

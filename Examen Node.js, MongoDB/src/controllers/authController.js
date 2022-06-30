@@ -14,7 +14,7 @@ const authController = (People) => {
                 (user === null ||
                 !(await bcrypt.compare(body.password, user.password))
             ) {
-                return res.status(httpStatus.FORBIDDEN).send('te invalidaste credentials pa')
+                return res.status(httpStatus.FORBIDDEN).send('invalid credentials')
             }
             const token = generateToken()
 

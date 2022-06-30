@@ -1,10 +1,7 @@
 const express = require('express')
 const jdmController = require('../controllers/jdmControllers')
 const validator = require('express-joi-validation').createValidator({})
-const querySchema = require('../validations/validationsJDM/queryValidator')
-const bodySchema = require('../validations/validationsJDM/bodyValidator')
-const paramsSchema = require('../validations/validationsJDM/idValidator')
-const bodyIdSchema = require('../validations/validationsJDM/bodyValidatorById')
+const {bodySchema, querySchema, paramsSchema} = require('../validations/validationsCars')
 
 const routes = (Car) => {
     const jdmRouter = express.Router()
@@ -19,7 +16,7 @@ const routes = (Car) => {
     jdmRouter
     .route('/jdm/:id')
     .get(validator.params(paramsSchema), getJdmCarsById)
-    .put(validator.body(bodyIdSchema), putJdmCarsById)
+    .put(validator.body(bodySchema), putJdmCarsById)
     .delete(validator.params(paramsSchema), deleteJdmCarsById)
 
     return jdmRouter

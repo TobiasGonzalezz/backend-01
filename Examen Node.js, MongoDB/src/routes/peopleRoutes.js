@@ -1,9 +1,7 @@
 const express = require('express')
 const peopleController = require('../controllers/peopleController')
 const validator = require('express-joi-validation').createValidator({})
-const bodySchema = require('../validations/validationsPeople/bodyValidator')
-const querySchema = require('../validations/validationsPeople/queryValidator')
-const paramsSchema = require('../validations/validationsPeople/idValidator')
+const {bodySchema, querySchema, paramsSchema} = require('../validations/validationsPeople')
 
 const router = (People) => {
     const peopleRouter = express.Router()
