@@ -11,6 +11,8 @@ require('dotenv').config()
 const { expressjwt } = require('express-jwt')
 
 
+
+
 const app = express()
 
 require('./src/database/db')
@@ -22,7 +24,7 @@ app.use(express.json())
 
 app.all('/*',
     expressjwt({ secret: process.env.SECRET, algorithms: ['HS256'] }).unless({
-            path: ['/auth/login', 'auth/register']
+            path: ['/auth/login', '/auth/register', '/jdm/all']
         })
 )
 

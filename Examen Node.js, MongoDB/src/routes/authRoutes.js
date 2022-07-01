@@ -1,6 +1,5 @@
 const express = require('express')
 const authController = require('../controllers/authController.js')
-const { bodySchema } = require('../validations/validationsPeople')
 
 const router = (People) => {
     const authRouter = express.Router()
@@ -13,7 +12,7 @@ const router = (People) => {
 
     authRouter
     .route('/auth/register')
-    .post(validator.body(bodySchema), register)
+    .post(register)
 
     return authRouter
 }
