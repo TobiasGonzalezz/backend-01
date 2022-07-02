@@ -1,10 +1,11 @@
-<h1 align="center">My first repository with Node.js and MongoDB</h1>
-<h3 align="justify">Global Learning Node.js MongodDB Exam - 2022</h3>
+<h2>My first repository with Node.js and MongoDB</h2>
+
+<h4 align="justify">Global Learning Node.js MongodDB Exam - 2022</h4>
 
 ---
 Rating: pending
 
 ---
-<h3 align="justify">Heroku JDM</h3>
+<h4 align="justify">Heroku JDM</h4>
 
-To see the jdm car database created by me, click on the following link: [Heroku](https://tobias-people-test.herokuapp.com/api/cars)
+To see the JDM car database created by me, click on the following link: [Heroku](https://tobias-people-test.herokuapp.com/api/cars)
