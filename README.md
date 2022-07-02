@@ -9,3 +9,6 @@ Rating: pending
 <h3 align="justify">Heroku JDM</h3>
 
 To see the JDM car database created by me, click on the following link: [Heroku](https://tobias-people-test.herokuapp.com/api/cars)
+
+<h3 align="justify">Heroku Users</h3>
+To see the Users database created by me, click on the following link: [Heroku](https://tobias-people-test.herokuapp.com/api/people)
