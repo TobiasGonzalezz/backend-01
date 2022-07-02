@@ -64,6 +64,14 @@ const jdmController = (Car) => {
         try {
             const { params } = req
 
+            const checkData = await Car.find({
+                _id: params.id
+            })
+
+            if (checkData.length === 0) {
+                return res.status(httpStatus.FORBIDDEN).send('No data found with the provided ID.')
+            }
+
             const response = await Car.findById(params.id)
 
             return res.status(httpStatus.OK).json(response)
@@ -76,11 +84,11 @@ const jdmController = (Car) => {
         try {
             const { params } = req
 
-            const checkData = await People.find({
+            const checkData = await Car.find({
                 _id: params.id
             })
 
-            if (checkData.lenght === 0) {
+            if (checkData.length === 0) {
                 return res.status(httpStatus.FORBIDDEN).send('No data found with the provided ID.')
             }
 

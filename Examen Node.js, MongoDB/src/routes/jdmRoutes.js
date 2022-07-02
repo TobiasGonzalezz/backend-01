@@ -9,7 +9,7 @@ const routes = (Car) => {
     const { getAllJdmCars, postJdmCars, getJdmCarsById, putJdmCarsById, deleteJdmCarsById} = jdmController(Car)
 
     jdmRouter
-    .route('/jdm/all')
+    .route('/cars')
     .get(validator.query(querySchema), getAllJdmCars)
 
     jdmRouter

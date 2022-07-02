@@ -12,6 +12,9 @@ const router = (People) => {
     peopleRouter
         .route('/people')
         .get(validator.query(querySchema), getAllPeople)
+
+        peopleRouter
+        .route('/people/register')
         .post(validator.body(bodySchema), postPeople)
 
     peopleRouter

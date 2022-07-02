@@ -1,6 +1,11 @@
 const httpStatus = require('../helpers/httpStatus')
 
 const ERROR_HANDLERS = {
+    ReferenceError: (res, err) => {
+        res
+        .status(httpStatus.BAD_REQUEST)
+        .send({error: err.name, cause: err.message, message: 'internal error please know sorry, error in finding Id check controllers' })
+    },
     Error: (res, err) => {
         res
         .status(httpStatus.BAD_REQUEST)
