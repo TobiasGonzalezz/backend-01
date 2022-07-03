@@ -17,6 +17,7 @@ const querySchema = Joi.alternatives().try(
     }),
     Joi.object({})
 );
+
 const bodySchema = Joi.object({
     firstName: Joi.string().alphanum().min(3).max(30).trim().required(),
     lastName: Joi.string().alphanum().min(3).max(30).trim().required(),

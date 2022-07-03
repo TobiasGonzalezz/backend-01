@@ -38,9 +38,6 @@ const querySchema = Joi.alternatives().try(
     Joi.object({
         traction: Joi.string().required(),
     }),
-    Joi.object({
-        imageUrl: Joi.string().required(),
-    }),
     Joi.object({})
 );
 
